@@ -1,0 +1,109 @@
+﻿<Window x:Class="NewManagingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewManagingApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="1000" 
+        Background="Transparent" AllowsTransparency="True"
+        WindowStyle="None" x:Name="window"
+        ResizeMode="CanResizeWithGrip" 
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Helvetica">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="RoyalBlue" 
+                CornerRadius="10,0,0,10" 
+                Grid.Column="0"
+                BorderThickness="2,2,0,2"
+                BorderBrush="LightSteelBlue">
+
+            <StackPanel Grid.Column="0"
+                        Margin="5">
+                
+                <Border Height="80" 
+                        Width="160" 
+                        Margin="0,10,0,0" 
+                        BorderBrush="MidnightBlue" 
+                        BorderThickness="2" 
+                        CornerRadius="10" />
+                <Label Content="MENU"
+                       Style="{StaticResource MenuLabel}"
+                       />
+                <Label Content="Dashboard"
+                       x:Name="DashboardLabel"
+                       Style="{StaticResource MenuItemLabel}"
+                       MouseDown="DashboardLabel_MouseDown" />
+                <Label Content="Indeks"
+                       x:Name="IndeksLabel"
+                       Style="{StaticResource MenuItemLabel}"
+                       MouseDown="IndeksLabel_MouseDown"/>
+                <Label Content="Raports"
+                       x:Name="RaportsLabel"
+                       Style="{StaticResource MenuItemLabel}"
+                       MouseDown="RaportsLabel_MouseDown"/>
+                <Label Content="Magazines"
+                       x:Name="MagazinesLabel"
+                       Style="{StaticResource MenuItemLabel}"
+                       MouseDown="MagazinesLabel_MouseDown"/>
+                <Label Content="FAQ"
+                       x:Name="FAQLabel"
+                       Style="{StaticResource MenuItemLabel}"
+                       MouseDown="FAQLabel_MouseDown"/>
+
+            </StackPanel>
+
+        </Border>
+        
+        <Border Background="LightSteelBlue" 
+                CornerRadius="0,10,10,0" 
+                Grid.Column="1" Grid.RowSpan="2"
+                BorderThickness="2"
+                BorderBrush="LightSteelBlue">
+
+            <Grid >
+                <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,3,0,0"
+                        Width="80">
+                    <Label Content="-" 
+                           x:Name="LabelMinimalize"
+                           FontSize="18"
+                           Margin="0,1,0,0"
+                           Style="{StaticResource WindowOperations}"
+                           MouseDown="LabelMinimalize_MouseDown"/>
+                    
+                    <Label Content="[]" 
+                           x:Name="LabelFullWindow"
+                           FontSize="16"
+                           Style="{StaticResource WindowOperations}"
+                           MouseDown="LabelFullWindow_MouseDown"
+                           />
+                    
+                    <Label Content="X" 
+                           x:Name="LabelClose"
+                           FontSize="16"
+                           Margin="0,2,0,0"
+                           Style="{StaticResource WindowOperations}"
+                           MouseDown="LabelClose_MouseDown"/>
+                </StackPanel>
+                <Frame x:Name="MainFrame" 
+                       Margin="5,40,5,5" 
+                       NavigationUIVisibility="Hidden"/>
+
+            </Grid>
+
+        </Border>
+        
+    </Grid>
+
+</Window>
