@@ -1,5 +1,6 @@
 ﻿using NewManagingApp.Classes;
 using NewManagingApp.Repository;
+using NewManagingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,44 +8,51 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace NewManagingApp.ViewModels
 {
     internal class IndeksViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public ObservableCollection<Indeks> listOfIndeks = new();
+        private string? FilterText { get; set; }
+        public string? FilterTextSetter
+        {
+            get
+            {
+                return FilterText;
+            }
+            set
+            {
+                FilterText = value;
+                OnPropertyChanged(nameof(FilterTextSetter));
+            }
+        }
+        public ObservableCollection<Indeks> ListOfIndeks { get; set; } = new();
 
         private ICommand? showListOfIndeks = null;
-        public IndeksViewModel()
+        public ICommand ShowListOfIndeks
         {
-            
+            get
+            {
+                if (showListOfIndeks == null) showListOfIndeks = new RelayCommand(
+                    (o) =>
+                    {
+                        ListOfIndeks = IndeksService.FindList(FilterText!);
+                        OnPropertyChanged(nameof(ListOfIndeks));
+                    });
+                return showListOfIndeks;
+            }
         }
 
 
-        public ICommand ShowListOfIndeks()
-        {
-            if (showListOfIndeks == null) showListOfIndeks = new RelayCommand(
-                (object o)=>
-                {
-                    listOfIndeks = Lists.ListOfIndeks;
-                    OnPropertyChanged(nameof(listOfIndeks));
-                },
-                (object o) =>
-                {
-                    return true;
-                });
-            return showListOfIndeks;
-        }
 
 
+
+        public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string propertyName)
         {
-            if(PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

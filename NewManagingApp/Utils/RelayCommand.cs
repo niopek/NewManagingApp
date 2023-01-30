@@ -20,7 +20,7 @@ namespace NewManagingApp
 
         public RelayCommand(Action<object> execute, Func<object, bool>? canExecute = null)
         {
-            if(execute == null) throw new ArgumentNullException(nameof(execute));
+            if (execute == null) throw new ArgumentNullException(nameof(execute));
             this.execute = execute;
             this.canExecute = canExecute;
         }
@@ -33,8 +33,8 @@ namespace NewManagingApp
 
         public void Execute(object? parameter)
         {
-            this.execute(parameter!);
-            
+            execute(parameter!);
+
         }
     }
 }
