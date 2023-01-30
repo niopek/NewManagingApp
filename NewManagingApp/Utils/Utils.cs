@@ -35,5 +35,15 @@ namespace NewManagingApp
 
             return list;
         }
+
+        public static bool IsTextBoxEmpty(string text)
+        {
+            if (text == null || text == "")
+                return true;
+
+            return false;
+        }
+
+
     }
 }

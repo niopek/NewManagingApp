@@ -35,18 +35,18 @@ namespace NewManagingApp.ViewModels
         {
             get
             {
-                if (showListOfIndeks == null) showListOfIndeks = new RelayCommand(
+                showListOfIndeks ??= new RelayCommand(
                     (o) =>
                     {
-                        ListOfIndeks = IndeksService.FindList(FilterText!);
+                        ListOfIndeks = IndeksService.FindList(FilterText!, IsFindByNameChecked);
                         OnPropertyChanged(nameof(ListOfIndeks));
                     });
+
                 return showListOfIndeks;
             }
         }
 
-
-
+        public bool IsFindByNameChecked { get; set; }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -12,17 +12,38 @@
         <mw:IndeksViewModel/>
     </Page.DataContext>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="txt" Text="{Binding FilterTextSetter, Mode=TwoWay}" Width="200" />
-        <Button Content="Click" Command="{Binding ShowListOfIndeks}" Width="100"/>
+            
+            <ComboBox Width="70" 
+                      HorizontalContentAlignment="Center" 
+                      VerticalContentAlignment="Center" 
+                      Margin="5">
+                <ComboBoxItem Content="INDEKS" 
+                              IsSelected="True"/>
+                <ComboBoxItem Content="NAZWA" 
+                              IsSelected="{Binding IsFindByNameChecked, Mode=TwoWay}"/>
+            </ComboBox>
+            
+            <TextBox Text="{Binding FilterTextSetter, Mode=TwoWay}" 
+                     Width="200" 
+                     Margin="5"/>
+            
+            <Button Content="Click" 
+                    Command="{Binding ShowListOfIndeks}"
+                    Width="100" Margin="5"/>
+            
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeks}">
+        
+        
+        <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeks}" Background="Transparent" >
             <ListView.View>
-                <GridView AllowsColumnReorder="True">
+                <GridView AllowsColumnReorder="True" >
                     <GridViewColumn Header="Id" 
                                     Width="100"
                                     DisplayMemberBinding="{Binding Id}"/>
@@ -35,5 +56,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        
+        
     </Grid>
 </Page>
