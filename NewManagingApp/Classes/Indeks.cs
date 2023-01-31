@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewManagingApp.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NewManagingApp.Classes
 {
-    internal class Indeks
+    internal class Indeks : IName, IId
     {
         public int Id { get; set; }
         public string Name { get; set; }
