@@ -41,12 +41,12 @@ namespace NewManagingApp.Services
                 collection = listWithData.Where(i => i.Name.Contains(text)).ToObservableCollection();
             }
 
-            if (!collection.Any())
+            if (!collection!.Any())
             {
                 MessageBox.Show("Brak");
             }
 
-            return collection;
+            return collection!;
         }
     }
 }

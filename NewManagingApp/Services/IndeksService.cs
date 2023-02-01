@@ -1,4 +1,5 @@
 ﻿using NewManagingApp.Classes;
+using NewManagingApp.Interfaces;
 using NewManagingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace NewManagingApp.Services
     {
         public static ObservableCollection<Indeks> FindList(string text, bool isFindByNameChecked = false)
         {
-            var listOfFoundIndeks = new ObservableCollection<Indeks>();
+            ObservableCollection<Indeks> listOfFoundIndeks;
 
             if (Utils.IsTextBoxEmpty(text))
             {
