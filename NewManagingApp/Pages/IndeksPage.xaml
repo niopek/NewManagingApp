@@ -30,7 +30,7 @@
                               IsSelected="{Binding IsFindByNameChecked, Mode=TwoWay}"/>
             </ComboBox>
             
-            <TextBox Text="{Binding FilterTextSetter, Mode=TwoWay}" 
+            <TextBox Text="{Binding FilterText, Mode=TwoWay}" 
                      Width="200" 
                      Margin="5"/>
             

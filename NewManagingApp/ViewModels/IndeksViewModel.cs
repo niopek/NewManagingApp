@@ -13,24 +13,15 @@ using System.Windows.Input;
 
 namespace NewManagingApp.ViewModels
 {
-    internal class IndeksViewModel : INotifyPropertyChanged
+    internal class IndeksViewModel : BaseViewModel
     {
-        private string? FilterText { get; set; }
-        public string? FilterTextSetter
-        {
-            get
-            {
-                return FilterText;
-            }
-            set
-            {
-                FilterText = value;
-                OnPropertyChanged(nameof(FilterTextSetter));
-            }
-        }
         public ObservableCollection<Indeks> ListOfIndeks { get; set; } = new();
 
         private ICommand? showListOfIndeks = null;
+        public string? FilterText { get; set; }
+
+        public bool IsFindByNameChecked { get; set; }
+
         public ICommand ShowListOfIndeks
         {
             get
@@ -46,13 +37,8 @@ namespace NewManagingApp.ViewModels
             }
         }
 
-        public bool IsFindByNameChecked { get; set; }
+        
 
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+       
     }
 }
