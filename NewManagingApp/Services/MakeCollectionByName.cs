@@ -11,7 +11,7 @@ using System.Windows.Interop;
 
 namespace NewManagingApp.Services
 {
-    internal class MakeCollectionByName<T> where T: IName
+    internal class MakeCollectionByName<T> where T : IIndeksIdName
     {
         public static ObservableCollection<T> GetCollectionByName(string text, ObservableCollection<T> listWithData) 
         {
@@ -27,18 +27,18 @@ namespace NewManagingApp.Services
                 {
                     if (j == 0)
                     {
-                        collection = listWithData.Where(i => i.Name.Contains(textSplitted[0])).ToObservableCollection();
+                        collection = listWithData.Where(i => i.IndeksName.Contains(textSplitted[0])).ToObservableCollection();
                     }
                     else
                     {
-                        collection = collection!.Where(i => i.Name.Contains(textSplitted[j])).ToObservableCollection();
+                        collection = collection!.Where(i => i.IndeksName.Contains(textSplitted[j])).ToObservableCollection();
                     }
                 }
 
             }
             else
             {
-                collection = listWithData.Where(i => i.Name.Contains(text)).ToObservableCollection();
+                collection = listWithData.Where(i => i.IndeksName.Contains(text)).ToObservableCollection();
             }
 
             if (!collection!.Any())

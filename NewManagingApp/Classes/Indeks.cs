@@ -9,28 +9,21 @@ using System.Xml.Linq;
 
 namespace NewManagingApp.Classes
 {
-    internal class Indeks : IName, IId
+    internal class Indeks : IIndeksIdName
     {
         public long Pkuiw { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int IndeksId { get; set; }
+        public string IndeksName { get; set; }
         public string? Description { get; set; }
         public string UnitOfMeasure { get; set; }
         public int GroupOfMaterial { get; set; }
         public int ClassOfMaterial { get; set; }
         public string Tc { get; set; }
-
-        public Indeks() 
-        {
-            Name = "";
-            Description = "";
-        }
-
         public Indeks(long pkuiw, int id, string name, string unitOfMeasure, int groupOfMaterial, int classOfMaterial, string tc)
         {
             Pkuiw = pkuiw;
-            Id = id;
-            Name = name;
+            IndeksId = id;
+            IndeksName = name;
             UnitOfMeasure = unitOfMeasure;
             GroupOfMaterial = groupOfMaterial;
             ClassOfMaterial = classOfMaterial;
@@ -40,8 +33,8 @@ namespace NewManagingApp.Classes
         public Indeks(long pkuiw, int id, string name, string indeksDescription, string unitOfMeasure, int groupOfMaterial, int classOfMaterial, string tc)
         {
             Pkuiw = pkuiw;
-            Id = id;
-            Name = name;
+            IndeksId = id;
+            IndeksName = name;
             Description = indeksDescription;
             UnitOfMeasure = unitOfMeasure;
             GroupOfMaterial = groupOfMaterial;

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace NewManagingApp.Interfaces
 {
-    internal interface IId
+    internal interface ICountTotalPrice
     {
-        int Id { get; } 
+        decimal TotalPrice { get; set; }
+        public int OrdersCount { get; }
     }
 }

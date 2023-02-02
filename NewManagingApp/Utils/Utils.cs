@@ -1,5 +1,7 @@
-﻿using System;
+﻿using NewManagingApp.Classes;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +46,49 @@ namespace NewManagingApp
             return false;
         }
 
+
+        public static string ClearDotsFromPrice(string str)
+        {
+            string newStr = "";
+
+            foreach (char c in str)
+            {
+                if (Char.IsDigit(c) || c == ',')
+                {
+                    newStr += c;
+                }
+            }
+
+            return newStr;
+
+        }
+
+        public static string ClearHoursFromDate(string str)
+        {
+            string newStr = "";
+
+            if (str.Length > 10)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    newStr += str[i];
+                }
+            }
+            return newStr;
+        }
+
+        public static bool IsNumberInList(Plant number, ObservableCollection<Plant> listofnumers)
+        {
+            bool test = listofnumers.Where(l => l.PlantId == number.PlantId).Any();
+
+            return test;
+        }
+
+        public static bool IsIndeksCreated(Order o, ObservableCollection<IndeksDetails> listI)
+        {
+            bool test = listI.Where(l => l.IndeksId == o.IndeksId).Any();
+            return test;
+        }
 
     }
 }

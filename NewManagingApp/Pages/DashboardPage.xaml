@@ -11,76 +11,176 @@
     <Page.DataContext>
         <mw:LoadingDataViewModel/>
     </Page.DataContext>
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        
-        <Border Grid.Row="0" 
+
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock  Text="WCZYTAJ RAPORT"
+                        Grid.Row="0"
+                        VerticalAlignment="Center"    
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"/>
+
+            <Grid Grid.Row="1"
+                  Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center"
+                          FontSize="16">
+                    
+                    <ComboBoxItem Content="INDEKSY" 
+                                  IsSelected="True"/>
+                    
+                    <ComboBoxItem Content="RAPORT"
+                                  IsSelected="{Binding IsFindByRaportChecked, Mode=TwoWay}"/>
+                    
+                </ComboBox>
+                
+                <TextBox Text="{Binding Path}"
+                         Grid.Column="1"
+                         VerticalContentAlignment="Center"
+                         Margin="5 0 0 0"/>
+
+                <Button Margin="5 0 0 0"
+                        Content="Przeglądaj" 
+                        Command="{Binding LoadFilePathCommand}"
+                        Grid.Column="2"/>
+
+            </Grid>
+
+            <Button Grid.Row="2"
+                    Margin="5"
+                    Content="WCZYTAJ"
+                    Command="{Binding LoadExcelCommand}"/>
+
+
+        </Grid>
+
+        <Border Grid.Row="1" 
                 Grid.Column="0" 
                 CornerRadius="10" 
                 Background="RoyalBlue" 
                 Margin="10"/>
+
+        <TextBlock Text="Ilość indeksów: " 
+                   Margin="20,15,0,15" 
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Foreground="WhiteSmoke"
+                   Grid.Column="0"
+                   Grid.Row="1"/>
+
+        <TextBlock Text="{Binding NumberOfIndeks}" 
+                   Margin="150,15,0,15" 
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Foreground="WhiteSmoke"
+                   Grid.Column="0"
+                   Grid.Row="1"/>
+
+        <Border Grid.Row="1" 
+                Grid.Column="1"
+                CornerRadius="10" 
+                Background="RoyalBlue" 
+                Margin="10"/>
+
+        <TextBlock Text="cos tu bedzie: " 
+                   Margin="20,15,0,15" 
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Foreground="WhiteSmoke"
+                   Grid.Column="1"
+                   Grid.Row="1"
+                   />
+
         
+            
+        
+        <Border Grid.Row="2" 
+                Grid.Column="0" 
+                CornerRadius="10" 
+                Background="RoyalBlue" 
+                Margin="10"/>
+    
         <TextBlock Text="Wartość zamówień: " 
                    Margin="20,15,0,15" 
                    VerticalAlignment="Center"
                    FontSize="18"
                    Foreground="WhiteSmoke"
-                   Grid.Column="0"/>
-        
-        
-        <Border Grid.Row="0" 
+                   Grid.Column="0"
+                   Grid.Row="2"/>
+        <TextBlock Text="{Binding ValueOfOrders}" 
+                   Margin="180,15,0,15" 
+                   VerticalAlignment="Center"
+                   FontSize="18"
+                   Foreground="WhiteSmoke"
+                   Grid.Column="0"
+                   Grid.Row="2"/>
+
+        <Border Grid.Row="2" 
                 Grid.Column="1"
                 CornerRadius="10" 
                 Background="RoyalBlue" 
                 Margin="10"/>
-        
-        <TextBlock Text="Ilość zamówień: " 
-                   Margin="20,15,0,15" 
-                   VerticalAlignment="Center"
-                   FontSize="18"
-                   Foreground="WhiteSmoke"
-                   Grid.Column="1"/>
+        <Grid Grid.Column="1" Grid.Row="2">
 
-        <TextBlock Text="WCZYTAJ RAPORT"  
-                   VerticalAlignment="Top"
-                   Grid.Row="1"
-                   Margin="10 15 10 0"
-                   HorizontalAlignment="Center"
-                   FontSize="24"
-                   FontWeight="Bold"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Ilość zamówień: " 
+                        Margin="20,15,0,15" 
+                        VerticalAlignment="Bottom"
+                        FontSize="18"
+                        Foreground="WhiteSmoke"
+                        Grid.Row="0"
+                        />
+            <TextBlock Text="{Binding NumberOfOrders}" 
+                        Margin="150,15,0,15" 
+                        VerticalAlignment="Bottom"
+                        FontSize="18"
+                        Foreground="WhiteSmoke"
+                        Grid.Row="0"/>
 
-        <StackPanel Grid.Row="1" 
-                    Orientation="Horizontal"
-                    Margin="10 0 10 5">
+            <TextBlock Text="Użytych indeksów: " 
+                        Margin="20,15,0,15" 
+                        VerticalAlignment="Top"
+                        FontSize="18"
+                        Foreground="WhiteSmoke"
+                        Grid.Row="1"
+                        />
+            <TextBlock Text="{Binding NumberOfIndeksDetails}" 
+                        Margin="170,15,0,15" 
+                        VerticalAlignment="Top"
+                        FontSize="18"
+                        Foreground="WhiteSmoke"
+                        Grid.Row="1"/>
 
-            <TextBox Height="40" 
-                     Width="290"
-                     Text="{Binding Path}"
-                     VerticalContentAlignment="Center"
-                     />
-
-            <Button Margin="10 0 0 0" 
-                    Height="40"
-                    Width="70"
-                    Content="Przeglądaj" 
-                    Command="{Binding LoadFilePathCommand}" />
-
-        </StackPanel>
-
-        <Button Grid.Row="1"
-                Height="40"
-                VerticalAlignment="Bottom"
-                Margin="10 0 10 15"
-                Content="WCZYTAJ"
-                Command="{Binding LoadExcelCommand}"/>
+        </Grid>
 
     </Grid>
 </Page>

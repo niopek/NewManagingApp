@@ -4,11 +4,74 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NewManagingApp.Pages"
+      xmlns:mw="clr-namespace:NewManagingApp.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RaportsPage">
 
+    <Page.DataContext>
+        <mw:IndeksDetailsViewModel/>
+    </Page.DataContext>
     <Grid>
-        <TextBlock Text="Raports"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+
+            <ComboBox Width="70" 
+                      HorizontalContentAlignment="Center" 
+                      VerticalContentAlignment="Center" 
+                      Margin="5">
+                <ComboBoxItem Content="INDEKS" 
+                              IsSelected="True"/>
+                <ComboBoxItem Content="NAZWA" 
+                              IsSelected="{Binding IsFindByNameChecked, Mode=TwoWay}"/>
+            </ComboBox>
+
+            <TextBox Text="{Binding FilterText, Mode=TwoWay}" 
+                     Width="200" 
+                     Margin="5"/>
+
+            <Button Content="Click" 
+                    Command="{Binding ShowListOfIndeksDetails}"
+                    Width="100" Margin="5"/>
+            
+            
+            <Label Content="WARTOŚĆ:" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding ValueOfOrders}" VerticalAlignment="Center"/>
+            <Label Content="LICZBA ZAM:" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding NumberOfOrders}" VerticalAlignment="Center"/>
+            <Label Content="UŻYTYCH INDEKSÓW:" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding NumberOfIndeksDetails}" VerticalAlignment="Center"/>
+
+        </StackPanel>
+
+
+        <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeksDetails}" Background="Transparent" >
+            <ListView.View>
+                <GridView AllowsColumnReorder="True" >
+                    <GridViewColumn Header="Indeks" 
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding IndeksId}"/>
+                    <GridViewColumn Header="Nazwa" 
+                                    Width="200"
+                                    DisplayMemberBinding="{Binding IndeksName}"/>
+                    <GridViewColumn Header="Średnia cena" 
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding AvaragePrice}"/>
+                    <GridViewColumn Header="Ile kupiono" 
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding TotalAmount}"/>
+                    <GridViewColumn Header="Wartość całk" 
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding TotalPrice}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Page>

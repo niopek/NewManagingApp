@@ -10,6 +10,8 @@ namespace NewManagingApp.Repository
 {
     internal static class Lists
     {
-        public static ObservableCollection<Indeks> ListOfIndeks = new() { new() { Id = 7000001, Name= "TEST1", Description = "TEST1" }, new() { Id = 7000002, Name = "TEST2", Description = "TEST2" }, new() { Id = 7000003, Name = "TEST3", Description = "TEST3" } };
+        public static ObservableCollection<Indeks> ListOfIndeks = new();
+        public static ObservableCollection<Order> ListOfOrders = new();
+        public static ObservableCollection<IndeksDetails> ListsOfIndeksDetails = new();
     }
 }

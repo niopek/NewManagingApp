@@ -12,24 +12,24 @@ using System.Windows.Documents;
 
 namespace NewManagingApp.Services
 {
-    internal static class IndeksService
+    internal static class IndeksService<T> where T: IIndeksIdName
     {
-        public static ObservableCollection<Indeks> FindList(string text, bool isFindByNameChecked = false)
+        public static ObservableCollection<T> FindList(string text, ObservableCollection<T> Collection, bool isFindByNameChecked = false)
         {
-            ObservableCollection<Indeks> listOfFoundIndeks;
+            ObservableCollection<T> listOfFoundIndeks;
 
             if (Utils.IsTextBoxEmpty(text))
             {
-                listOfFoundIndeks = Lists.ListOfIndeks.ToObservableCollection()!;
+                listOfFoundIndeks = Collection.ToObservableCollection()!;
             }
             else if (isFindByNameChecked)
             {
-                listOfFoundIndeks = MakeCollectionByName<Indeks>.GetCollectionByName(text, Lists.ListOfIndeks);
+                listOfFoundIndeks = MakeCollectionByName<T>.GetCollectionByName(text, Collection);
             }
             else
             {
                 List<int> indeksToFind = Utils.FindIndeksFromText(text);
-                listOfFoundIndeks = MakeCollectionById<Indeks>.GetGetCollectionById(indeksToFind, Lists.ListOfIndeks);
+                listOfFoundIndeks = MakeCollectionById<T>.GetGetCollectionById(indeksToFind, Collection);
             }
             
             return listOfFoundIndeks!;

@@ -1,4 +1,5 @@
 ﻿using NewManagingApp.Classes;
+using NewManagingApp.Interfaces;
 using NewManagingApp.Repository;
 using NewManagingApp.Services;
 using System;
@@ -29,7 +30,7 @@ namespace NewManagingApp.ViewModels
                 showListOfIndeks ??= new RelayCommand(
                     (o) =>
                     {
-                        ListOfIndeks = IndeksService.FindList(FilterText!, IsFindByNameChecked);
+                        ListOfIndeks = IndeksService<Indeks>.FindList(FilterText!, Lists.ListOfIndeks ,IsFindByNameChecked);
                         OnPropertyChanged(nameof(ListOfIndeks));
                     });
 

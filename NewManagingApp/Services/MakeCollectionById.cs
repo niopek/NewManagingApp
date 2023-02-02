@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace NewManagingApp.Services
 {
-    internal class MakeCollectionById<T> where T: IId
+    internal class MakeCollectionById<T> where T: IIndeksIdName
     {
         public static ObservableCollection<T> GetGetCollectionById(List<int> indeksToFind, ObservableCollection<T> listWithData)
         {
@@ -19,7 +19,7 @@ namespace NewManagingApp.Services
 
             foreach (int indeks in indeksToFind)
             {
-                T? i = listWithData.FirstOrDefault(i => i.Id == indeks);
+                T? i = listWithData.FirstOrDefault(i => i.IndeksId == indeks);
                 if (i != null)
                 {
                     collection.Add(i);

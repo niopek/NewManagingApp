@@ -44,15 +44,21 @@
         <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeks}" Background="Transparent" >
             <ListView.View>
                 <GridView AllowsColumnReorder="True" >
-                    <GridViewColumn Header="Id" 
+                    <GridViewColumn Header="Indeks" 
                                     Width="100"
-                                    DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn Header="Name" 
-                                    Width="100"
-                                    DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Description" 
-                                    Width="100"
+                                    DisplayMemberBinding="{Binding IndeksId}"/>
+                    <GridViewColumn Header="Nazwa" 
+                                    Width="200"
+                                    DisplayMemberBinding="{Binding IndeksName}"/>
+                    <GridViewColumn Header="Opis" 
+                                    Width="auto"
                                     DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="JM" 
+                                    Width="60"
+                                    DisplayMemberBinding="{Binding UnitOfMeasure}"/>
+                    <GridViewColumn Header="TC" 
+                                    Width="60"
+                                    DisplayMemberBinding="{Binding Tc}"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace NewManagingApp.Interfaces
 {
-    internal interface IName
+    internal interface IIndeksIdName
     {
-        string Name { get; }
+        int IndeksId { get; set; }
+        string IndeksName { get; set; }
     }
 }
