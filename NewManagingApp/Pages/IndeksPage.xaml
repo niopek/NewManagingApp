@@ -37,6 +37,16 @@
             <Button Content="Click" 
                     Command="{Binding ShowListOfIndeks}"
                     Width="100" Margin="5"/>
+            <Label Content="LICZBA INDEKSÓW:" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding NumberOfIndeks}" VerticalAlignment="Center"/>
+            <Button Width="100" 
+                    Margin="5"
+                    Content="Zapisz Cennik"
+                    Command="{Binding SaveAsPriceList}"/>
+            <Button Width="100" 
+                    Margin="5"
+                    Content="Zapisz Platforme"
+                    Command="{Binding SaveAsPlatform}"/>
             
         </StackPanel>
         
@@ -52,7 +62,7 @@
                                     DisplayMemberBinding="{Binding IndeksName}"/>
                     <GridViewColumn Header="Opis" 
                                     Width="auto"
-                                    DisplayMemberBinding="{Binding Description}"/>
+                                    DisplayMemberBinding="{Binding IndeksDescription}"/>
                     <GridViewColumn Header="JM" 
                                     Width="60"
                                     DisplayMemberBinding="{Binding UnitOfMeasure}"/>

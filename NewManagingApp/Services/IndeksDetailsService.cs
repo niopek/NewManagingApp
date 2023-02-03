@@ -7,7 +7,7 @@ internal static class IndeksDetailsService
         var xlApp = new Excel.Application();
         if (xlApp == null)
         {
-            MessageBox.Show("Excel is not properly installed!!");
+            MessageBox.Show("Zle zainstalowany excel??");
             return;
         }
         object misValue = System.Reflection.Missing.Value;
@@ -41,7 +41,15 @@ internal static class IndeksDetailsService
         }
 
 
-        string path = @"C:\Users\pbaranowski\Desktop\test\testplatform.xls";
+        string path = "";
+
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        saveFileDialog.Filter = "Excel File|*.xls";
+        saveFileDialog.Title = "Save an Excel File";
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            path = saveFileDialog.FileName;
+        }
 
         xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
         xlWorkBook.Close(true, misValue, misValue);
@@ -51,7 +59,7 @@ internal static class IndeksDetailsService
         Marshal.ReleaseComObject(xlWorkBook);
         Marshal.ReleaseComObject(xlApp);
 
-        MessageBox.Show($"Excel file created , you can find the file {path}");
+        MessageBox.Show($"Plik utworzony pod scieżką: {path}");
     }
 
     public static void SaveListToExcelAsPriceList(this ObservableCollection<IndeksDetails> list)
@@ -59,7 +67,7 @@ internal static class IndeksDetailsService
         var xlApp = new Excel.Application();
         if (xlApp == null)
         {
-            MessageBox.Show("Excel is not properly installed!!");
+            MessageBox.Show("Zle zainstalowany excel??");
             return;
         }
         object misValue = System.Reflection.Missing.Value;
@@ -100,7 +108,15 @@ internal static class IndeksDetailsService
         formatRange.ColumnWidth = 45;
 
 
-        string path = @"C:\Users\pbaranowski\Desktop\test\test.xls";
+        string path = "";
+
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        saveFileDialog.Filter = "Excel File|*.xls";
+        saveFileDialog.Title = "Save an Excel File";
+        if (saveFileDialog.ShowDialog() == true)
+        {
+            path = saveFileDialog.FileName;
+        }
 
         xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
         xlWorkBook.Close(true, misValue, misValue);
@@ -110,6 +126,6 @@ internal static class IndeksDetailsService
         Marshal.ReleaseComObject(xlWorkBook);
         Marshal.ReleaseComObject(xlApp);
 
-        MessageBox.Show($"Excel file created , you can find the file {path}");
+        MessageBox.Show($"Plik utworzony pod scieżką: {path}");
     }
 }

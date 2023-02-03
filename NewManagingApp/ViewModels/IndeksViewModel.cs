@@ -8,6 +8,7 @@ internal class IndeksViewModel : BaseViewModel
     public string? FilterText { get; set; }
 
     public bool IsFindByNameChecked { get; set; }
+    public int NumberOfIndeks { get; set; }
 
     public ICommand ShowListOfIndeks
     {
@@ -17,6 +18,8 @@ internal class IndeksViewModel : BaseViewModel
                 (o) =>
                 {
                     ListOfIndeks = FindingCollectionService<Indeks>.FindList(FilterText!, Lists.ListOfIndeks ,IsFindByNameChecked);
+                    NumberOfIndeks = ListOfIndeks.Count;
+                    OnPropertyChanged(nameof(NumberOfIndeks));
                     OnPropertyChanged(nameof(ListOfIndeks));
                 });
 
@@ -24,7 +27,36 @@ internal class IndeksViewModel : BaseViewModel
         }
     }
 
-    
+    private ICommand? saveAsPlatform = null;
 
-   
+    public ICommand SaveAsPlatform
+    {
+        get
+        {
+            saveAsPlatform ??= new RelayCommand(
+                (o) =>
+                {
+                    ListOfIndeks.SaveListToExcelPlatform();
+                    MessageBox.Show("Zapisano");
+                });
+            return saveAsPlatform;
+        }
+    }
+
+    private ICommand? saveAsPriceList = null;
+    public ICommand SaveAsPriceList
+    {
+        get
+        {
+            saveAsPriceList ??= new RelayCommand(
+                (o) =>
+                {
+                    ListOfIndeks.SaveListToExcelAsPriceList();
+                    MessageBox.Show("Zapisano");
+                });
+            return saveAsPriceList;
+        }
+    }
+
+
 }

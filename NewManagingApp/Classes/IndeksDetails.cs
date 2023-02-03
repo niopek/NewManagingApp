@@ -4,7 +4,7 @@ internal class IndeksDetails : ICountTotalPrice, IIndeksIdName
 {
     public int IndeksId { get; set; }
     public string IndeksName { get; set; }
-    public string IndeksDescription { get; set; } = "";
+    public string? IndeksDescription { get; set; } = "";
 
     public ObservableCollection<Plant> Plants { get; set; }
     public int PlantsCount { get { return Plants.Count; } }

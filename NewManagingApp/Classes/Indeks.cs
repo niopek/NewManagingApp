@@ -5,7 +5,7 @@ internal class Indeks : IIndeksIdName
     public long Pkuiw { get; set; }
     public int IndeksId { get; set; }
     public string IndeksName { get; set; }
-    public string? Description { get; set; }
+    public string? IndeksDescription { get; set; }
     public string UnitOfMeasure { get; set; }
     public int GroupOfMaterial { get; set; }
     public int ClassOfMaterial { get; set; }
@@ -26,7 +26,7 @@ internal class Indeks : IIndeksIdName
         Pkuiw = pkuiw;
         IndeksId = id;
         IndeksName = name;
-        Description = indeksDescription;
+        IndeksDescription = indeksDescription;
         UnitOfMeasure = unitOfMeasure;
         GroupOfMaterial = groupOfMaterial;
         ClassOfMaterial = classOfMaterial;
