@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace NewManagingApp.Interfaces;
 
-namespace NewManagingApp.Interfaces
+internal interface ICountTotalPrice
 {
-    internal interface ICountTotalPrice
-    {
-        decimal TotalPrice { get; set; }
-        public int OrdersCount { get; }
-    }
+    decimal TotalPrice { get; set; }
+    public int OrdersCount { get; }
 }
