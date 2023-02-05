@@ -19,37 +19,29 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border Background="RoyalBlue" 
-                CornerRadius="10,0,0,10" 
-                Grid.Column="0"
-                BorderThickness="2,2,0,2"
-                BorderBrush="LightSteelBlue">
+        <Border Background="{DynamicResource MenuBorder}" 
+                CornerRadius="20,0,0,20" 
+                Grid.Column="0">
 
             <StackPanel Grid.Column="0"
-                        Margin="5">
+                        Margin="10,60,10,10">
                 
-                <Border Height="80" 
-                        Width="160" 
-                        Margin="0,10,0,0" 
-                        BorderBrush="MidnightBlue" 
-                        BorderThickness="2" 
-                        CornerRadius="10" />
                 <Label Content="MENU"
                        Style="{StaticResource MenuLabel}"
                        />
-                <Label Content="Dashboard"
+                <Label Content="PULPIT"
                        x:Name="DashboardLabel"
                        Style="{StaticResource MenuItemLabel}"
                        MouseDown="DashboardLabel_MouseDown" />
-                <Label Content="Indeks"
+                <Label Content="INDEKSY"
                        x:Name="IndeksLabel"
                        Style="{StaticResource MenuItemLabel}"
                        MouseDown="IndeksLabel_MouseDown"/>
-                <Label Content="Raports"
+                <Label Content="RAPORTY"
                        x:Name="RaportsLabel"
                        Style="{StaticResource MenuItemLabel}"
                        MouseDown="RaportsLabel_MouseDown"/>
-                <Label Content="Magazines"
+                <Label Content="MAGAZYNIER"
                        x:Name="MagazinesLabel"
                        Style="{StaticResource MenuItemLabel}"
                        MouseDown="MagazinesLabel_MouseDown"/>
@@ -61,12 +53,11 @@
             </StackPanel>
 
         </Border>
-        
-        <Border Background="LightSteelBlue" 
-                CornerRadius="0,10,10,0" 
-                Grid.Column="1" Grid.RowSpan="2"
-                BorderThickness="2"
-                BorderBrush="LightSteelBlue"
+
+        <Border Background="{StaticResource RightBorder}" 
+                CornerRadius="0,20,20,0" 
+                Grid.Column="1" 
+                Grid.RowSpan="2"
                 MouseDown="Border_MouseDown">
 
             <Grid >
@@ -78,25 +69,26 @@
                         Width="80">
                     <Label Content="-" 
                            x:Name="LabelMinimalize"
-                           FontSize="18"
+                           FontSize="20"
                            Margin="0,1,0,0"
                            Style="{StaticResource WindowOperations}"
                            MouseDown="LabelMinimalize_MouseDown"/>
                     
                     <Label Content="[]" 
                            x:Name="LabelFullWindow"
-                           FontSize="16"
+                           FontSize="20"
                            Style="{StaticResource WindowOperations}"
                            MouseDown="LabelFullWindow_MouseDown"
                            />
                     
                     <Label Content="X" 
                            x:Name="LabelClose"
-                           FontSize="16"
+                           FontSize="20"
                            Margin="0,2,0,0"
                            Style="{StaticResource WindowOperations}"
                            MouseDown="LabelClose_MouseDown"/>
                 </StackPanel>
+                
                 <Frame x:Name="MainFrame" 
                        Margin="5,40,5,5" 
                        NavigationUIVisibility="Hidden"/>
