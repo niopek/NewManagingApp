@@ -62,7 +62,6 @@ internal class IndeksDetailsViewModel : BaseViewModel
                 (o) =>
                 {
                     ListOfIndeksDetails.SaveListToExcelPlatform();
-                    MessageBox.Show("Zapisano");
                 });
             return saveAsPlatform;
         } }
@@ -74,7 +73,6 @@ internal class IndeksDetailsViewModel : BaseViewModel
                 (o) =>
                 {
                     ListOfIndeksDetails.SaveListToExcelAsPriceList();
-                    MessageBox.Show("Zapisano");
                 });
             return saveAsPriceList;
         } }
