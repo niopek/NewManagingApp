@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "NewManagingApp": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}

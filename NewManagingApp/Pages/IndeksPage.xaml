@@ -70,7 +70,8 @@
 
         <ListView Grid.Row="2" 
                   ItemsSource="{Binding ListOfIndeks}" 
-                  Style="{StaticResource ListViewStyle}">
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <ListView.View>
                 <GridView AllowsColumnReorder="True"
                           ColumnHeaderContainerStyle="{StaticResource GridViewStyle}">
