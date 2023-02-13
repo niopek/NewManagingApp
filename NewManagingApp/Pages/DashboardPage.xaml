@@ -37,8 +37,14 @@
                         Grid.Row="0"
                         VerticalAlignment="Center"    
                         HorizontalAlignment="Center"
-                        FontSize="24"
-                        FontWeight="Bold"/>
+                        FontSize="30"
+                        FontWeight="ExtraBold"
+                        Foreground="White"
+                        >
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="3" ShadowDepth="5" />
+                </TextBlock.Effect>
+            </TextBlock>
 
             <Grid Grid.Row="1"
                   Margin="5">
@@ -51,7 +57,8 @@
                 <ComboBox HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center"
                           FontSize="16"
-                          Style="{StaticResource RaportLoadingComboBox}">
+                          Margin="5 0 0 0"
+                          >
                     
                     <ComboBoxItem Content="INDEKSY" 
                                   IsSelected="True"
@@ -68,16 +75,18 @@
                          VerticalContentAlignment="Center"
                          Margin="5 0 0 0"/>
 
-                <Button Margin="5 0 0 0"
-                        Content="Przeglądaj" 
+                <Button Margin="5 0 5 0"
+                        Content="PRZEGLĄDAJ"
+                        Style="{StaticResource TidyButton}"
                         Command="{Binding LoadFilePathCommand}"
                         Grid.Column="2"/>
 
             </Grid>
 
             <Button Grid.Row="2"
-                    Margin="5"
+                    Margin="10,5,10,5"
                     Content="WCZYTAJ"
+                    Style="{StaticResource TidyButton}"
                     Command="{Binding LoadExcelCommand}"/>
 
 
@@ -85,11 +94,9 @@
 
         <Border Grid.Row="1" 
                 Grid.Column="0" 
-                CornerRadius="10" 
-                Background="{DynamicResource DisplayingBorders}"
-                BorderThickness="2"
-                BorderBrush="#5eccff" 
-                Margin="10"/>
+                Style="{StaticResource DashboardBorders}"
+                >
+        </Border>
 
         <TextBlock Text="Ilość indeksów: " 
                    Margin="20,15,0,15" 
@@ -109,11 +116,8 @@
 
         <Border Grid.Row="1" 
                 Grid.Column="1"
-                CornerRadius="10" 
-                Background="{DynamicResource DisplayingBorders}"
-                BorderThickness="2" 
-                BorderBrush="#5eccff"
-                Margin="10"/>
+                Style="{StaticResource DashboardBorders}"
+                />
 
         <TextBlock Text="cos tu bedzie: " 
                    Margin="20,15,0,15" 
@@ -129,11 +133,8 @@
         
         <Border Grid.Row="2" 
                 Grid.Column="0" 
-                CornerRadius="10" 
-                Background="{DynamicResource DisplayingBorders}" 
-                BorderBrush="#5eccff"
-                BorderThickness="2"
-                Margin="10"/>
+                Style="{StaticResource DashboardBorders}"
+                />
     
         <TextBlock Text="Wartość zamówień: " 
                    Margin="20,15,0,15" 
@@ -152,11 +153,8 @@
 
         <Border Grid.Row="2" 
                 Grid.Column="1"
-                CornerRadius="10" 
-                Background="{DynamicResource DisplayingBorders}" 
-                BorderThickness="2"
-                BorderBrush="#5eccff"
-                Margin="10"/>
+                Style="{StaticResource DashboardBorders}"
+                />
         <Grid Grid.Column="1" Grid.Row="2">
 
             <Grid.RowDefinitions>

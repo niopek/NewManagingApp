@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:NewManagingApp.Pages"
       xmlns:mw="clr-namespace:NewManagingApp.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="950"
+      d:DesignHeight="550" d:DesignWidth="1100"
       Title="RaportsPage">
 
     <Page.DataContext>
@@ -15,16 +15,18 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
 
-            <ComboBox Width="70" 
+            <ComboBox Width="100" 
                       HorizontalContentAlignment="Center" 
                       VerticalContentAlignment="Center" 
-                      Margin="5">
+                      Margin="5"
+                      FontSize="18">
                 <ComboBoxItem Content="INDEKS" 
                               IsSelected="True"/>
                 <ComboBoxItem Content="NAZWA" 
@@ -32,50 +34,86 @@
             </ComboBox>
 
             <TextBox Text="{Binding FilterText, Mode=TwoWay}" 
-                     Width="200" 
+                     Width="400" 
                      Margin="5"/>
 
-            <Button Content="Click" 
+            <Button Content="WCZYTAJ" 
                     Command="{Binding ShowListOfIndeksDetails}"
+                    Style="{StaticResource TidyButton}"
                     Width="100" 
                     Margin="5"/>
             
             
-            <Label Content="WARTOŚĆ:" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding ValueOfOrders}" VerticalAlignment="Center"/>
-            <Label Content="LICZBA ZAM:" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding NumberOfOrders}" VerticalAlignment="Center"/>
-            <Label Content="UŻYTYCH INDEKSÓW:" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding NumberOfIndeksDetails}" VerticalAlignment="Center"/>
-            <Button Width="100" 
+            
+            <Button Width="140" 
                     Margin="5"
-                    Content="Zapisz Cennik"
+                    Content="ZAPISZ CENNIK"
+                    Style="{StaticResource TidyButton}"
                     Command="{Binding SaveAsPriceList}"/>
-            <Button Width="100" 
+            <Button Width="160" 
                     Margin="5"
-                    Content="Zapisz Platforme"
+                    Content="ZAPISZ PLATFORME"
+                    Style="{StaticResource TidyButton}"
                     Command="{Binding SaveAsPlatform}"/>
 
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1">
+            
+            <Label Content="LICZBA ZAM:" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource LabelWithShadow}"
+                   />
+            <TextBlock Text="{Binding NumberOfOrders}" 
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextBlockWithShadow}"
+                       />
+            
+            <Label Content="UŻYTYCH INDEKSÓW:" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource LabelWithShadow}"
+                   Margin="10 0 0 0"/>
+            <TextBlock Text="{Binding NumberOfIndeksDetails}" 
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextBlockWithShadow}"
+                       />
+            
+            <Label Content="WARTOŚĆ:" 
+                   VerticalAlignment="Center"
+                   Style="{StaticResource LabelWithShadow}"
+                   Margin="10 0 0 0"/>
+            <TextBlock Text="{Binding ValueOfOrders}" 
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TextBlockWithShadow}"
+                       />
+            
+            
+        </StackPanel>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeksDetails}" Background="Transparent" >
+        <ListView Grid.Row="2" 
+                  ItemsSource="{Binding ListOfIndeksDetails}" 
+                  Style="{StaticResource ListViewStyle}"
+                  
+                  >
             <ListView.View>
-                <GridView AllowsColumnReorder="True" >
-                    <GridViewColumn Header="Indeks" 
-                                    Width="100"
+                <GridView AllowsColumnReorder="True" 
+                          ColumnHeaderContainerStyle="{StaticResource GridViewStyle}"
+                          >
+                    <GridViewColumn Header="INDEKS" 
+                                    Width="120"
                                     DisplayMemberBinding="{Binding IndeksId}"/>
-                    <GridViewColumn Header="Nazwa" 
-                                    Width="200"
+                    <GridViewColumn Header="NAZWA" 
+                                    Width="250"
                                     DisplayMemberBinding="{Binding IndeksName}"/>
-                    <GridViewColumn Header="Średnia cena" 
-                                    Width="100"
+                    <GridViewColumn Header="ŚREDNIA CENA"
+                                    Width="140"
                                     DisplayMemberBinding="{Binding AvaragePrice}"/>
-                    <GridViewColumn Header="Ile kupiono" 
-                                    Width="100"
+                    <GridViewColumn Header="ILE KUPIONO" 
+                                    Width="140"
                                     DisplayMemberBinding="{Binding TotalAmount}"/>
-                    <GridViewColumn Header="Wartość całk" 
-                                    Width="100"
+                    <GridViewColumn Header="WARTOŚĆ CAŁK" 
+                                    Width="140"
                                     DisplayMemberBinding="{Binding TotalPrice}"/>
                 </GridView>
             </ListView.View>

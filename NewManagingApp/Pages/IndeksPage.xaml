@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:NewManagingApp.Pages"
       xmlns:mw="clr-namespace:NewManagingApp.ViewModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="1100"
       Title="IndeksPage">
     <Page.DataContext>
         <mw:IndeksViewModel/>
@@ -14,16 +14,18 @@
     <Grid>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
         <StackPanel Orientation="Horizontal">
             
-            <ComboBox Width="70" 
+            <ComboBox Width="100" 
                       HorizontalContentAlignment="Center" 
                       VerticalContentAlignment="Center" 
-                      Margin="5">
+                      Margin="5"
+                      FontSize="18">
                 <ComboBoxItem Content="INDEKS" 
                               IsSelected="True"/>
                 <ComboBoxItem Content="NAZWA" 
@@ -31,43 +33,61 @@
             </ComboBox>
             
             <TextBox Text="{Binding FilterText, Mode=TwoWay}" 
-                     Width="200" 
+                     Width="500"
+                     VerticalContentAlignment="Center"
                      Margin="5"/>
             
-            <Button Content="Click" 
+            <Button Content="WCZYTAJ" 
                     Command="{Binding ShowListOfIndeks}"
+                    Style="{StaticResource TidyButton}"
                     Width="100" Margin="5"/>
-            <Label Content="LICZBA INDEKSÓW:" VerticalAlignment="Center"/>
-            <TextBlock Text="{Binding NumberOfIndeks}" VerticalAlignment="Center"/>
-            <Button Width="100" 
+            
+            <Button Width="120" 
                     Margin="5"
                     Content="Zapisz Cennik"
+                    Style="{StaticResource TidyButton}"
                     Command="{Binding SaveAsPriceList}"/>
-            <Button Width="100" 
+            <Button Width="140" 
                     Margin="5"
                     Content="Zapisz Platforme"
+                    Style="{StaticResource TidyButton}"
                     Command="{Binding SaveAsPlatform}"/>
             
         </StackPanel>
-        
-        
-        <ListView Grid.Row="1" ItemsSource="{Binding ListOfIndeks}" Background="Transparent" >
+
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1">
+            <Label Content="LICZBA WCZYTANYCH INDEKSÓW:" 
+                   Style="{StaticResource LabelWithShadow}">
+            </Label>
+
+            <TextBlock Text="{Binding NumberOfIndeks}" 
+                       Style="{StaticResource TextBlockWithShadow}">
+            </TextBlock>
+            
+            
+        </StackPanel>
+
+        <ListView Grid.Row="2" 
+                  ItemsSource="{Binding ListOfIndeks}" 
+                  Style="{StaticResource ListViewStyle}">
             <ListView.View>
-                <GridView AllowsColumnReorder="True" >
-                    <GridViewColumn Header="Indeks" 
-                                    Width="100"
+                <GridView AllowsColumnReorder="True"
+                          ColumnHeaderContainerStyle="{StaticResource GridViewStyle}">
+                    <GridViewColumn Header="INDEKS" 
+                                    Width="120"
                                     DisplayMemberBinding="{Binding IndeksId}"/>
-                    <GridViewColumn Header="Nazwa" 
-                                    Width="200"
+                    <GridViewColumn Header="NAZWA" 
+                                    Width="250"
                                     DisplayMemberBinding="{Binding IndeksName}"/>
-                    <GridViewColumn Header="Opis" 
-                                    Width="auto"
+                    <GridViewColumn Header="OPIS"
+                                    Width="250"
                                     DisplayMemberBinding="{Binding IndeksDescription}"/>
                     <GridViewColumn Header="JM" 
-                                    Width="60"
+                                    Width="80"
                                     DisplayMemberBinding="{Binding UnitOfMeasure}"/>
                     <GridViewColumn Header="TC" 
-                                    Width="60"
+                                    Width="80"
                                     DisplayMemberBinding="{Binding Tc}"/>
                 </GridView>
             </ListView.View>

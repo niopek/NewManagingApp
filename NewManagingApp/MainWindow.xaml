@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewManagingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1000" 
+        Title="MainWindow" Height="750" Width="1400" 
         Background="Transparent" AllowsTransparency="True"
         WindowStyle="None" x:Name="window"
         ResizeMode="CanResizeWithGrip" 
@@ -28,6 +28,7 @@
 
                 <Label Content="MENU"
                        Style="{StaticResource MenuLabel}"
+                       Margin="0 0 0 10"
                        />
                 <Label Content="PULPIT"
                        x:Name="DashboardLabel"

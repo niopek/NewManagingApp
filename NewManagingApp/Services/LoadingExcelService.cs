@@ -63,18 +63,16 @@ internal static class LoadingExcelService
                         int IndeksGroupOfMaterial = int.Parse(dataRow[5].ToString()!);
                         int IndeksClassOfMaterial = int.Parse(dataRow[6].ToString()!);
                         string IndeksTc = dataRow[7].ToString()!;
-                        try
+
+                        if (IndeksDescription != null)
                         {
-                            if (IndeksDescription != null)
-                            {
-                                list.Add(new(PkuiwNumber, IndeksId, IndeksName, IndeksDescription, IndeksUnitOfMeasure, IndeksGroupOfMaterial, IndeksClassOfMaterial, IndeksTc));
-                            }
-                            else
-                            {
-                                list.Add(new(PkuiwNumber, IndeksId, IndeksName, IndeksUnitOfMeasure, IndeksGroupOfMaterial, IndeksClassOfMaterial, IndeksTc));
-                            }
+                            list.Add(new(PkuiwNumber, IndeksId, IndeksName, IndeksDescription, IndeksUnitOfMeasure, IndeksGroupOfMaterial, IndeksClassOfMaterial, IndeksTc));
                         }
-                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+                        else
+                        {
+                            list.Add(new(PkuiwNumber, IndeksId, IndeksName, IndeksUnitOfMeasure, IndeksGroupOfMaterial, IndeksClassOfMaterial, IndeksTc));
+                        }
+
                     }
                 }
             });
@@ -137,11 +135,9 @@ internal static class LoadingExcelService
                         decimal amount = decimal.Parse(amountString);
 
 
-                        try
-                        {
-                            list.Add(new(orderId, productId, productName, productDescription, supplierId, supplierName, amount, unitOfMeasure, price, currency, date, plant, pkuiw, materialMoveNumber, materialCategory));
-                        }
-                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+                        list.Add(new(orderId, productId, productName, productDescription, supplierId, supplierName, amount, unitOfMeasure, price, currency, date, plant, pkuiw, materialMoveNumber, materialCategory));
+
 
                     }
                 }
