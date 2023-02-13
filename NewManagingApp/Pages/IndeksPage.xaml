@@ -35,7 +35,9 @@
             <TextBox Text="{Binding FilterText, Mode=TwoWay}" 
                      Width="500"
                      VerticalContentAlignment="Center"
-                     Margin="5"/>
+                     Margin="5"
+                     AcceptsTab="True"
+                     AcceptsReturn="True"/>
             
             <Button Content="WCZYTAJ" 
                     Command="{Binding ShowListOfIndeks}"

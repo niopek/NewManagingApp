@@ -142,7 +142,6 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
 
-
         </Style>
         
         <Style TargetType="GridViewColumnHeader" x:Key="GridViewStyle">
@@ -152,11 +151,18 @@
             
         </Style>
         <Style TargetType="ListViewItem" x:Key="ListViewItemStyle">
+            <Setter Property="ClipToBounds" Value="True"/>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="#610017"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#450111"/>
+                    
                 </Trigger>
             </Style.Triggers>
+            
         </Style>
         
         
