@@ -10,29 +10,41 @@ namespace NewManagingApp.Services
 {
     internal static  class IndeksService
     {
-        public static void SaveListToExcelPlatform(this ObservableCollection<Indeks> list)
+        public async static void SaveListToExcelPlatform(this ObservableCollection<Indeks> list)
         {
-            var xlApp = new Excel.Application();
-            if (xlApp == null)
+            string path = PathService.GetPath();
+
+            if (path != "")
             {
-                MessageBox.Show("Zle zainstalowany excel??");
-                return;
+                bool IsSavingDone = await PlatformSavingModel(path, list);
+
+                if (IsSavingDone)
+                    MessageBox.Show($"Plik utworzony pod scieżką: {path}");
             }
-            object misValue = System.Reflection.Missing.Value;
-            var xlWorkBook = xlApp.Workbooks.Add(misValue);
-
-
-            string path = "";
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel File|*.xls";
-            saveFileDialog.Title = "Save an Excel File";
-            if (saveFileDialog.ShowDialog() == true)
+            else
             {
-                path = saveFileDialog.FileName;
+                MessageBox.Show("Wybierz prawidlowa sciezke do pliku");
             }
 
-            if(path != "" && path != null)
+
+        }
+        private async static Task<bool> PlatformSavingModel(string path, ObservableCollection<Indeks> list)
+        {
+            bool test = false;
+            await Task.Run(() =>
             {
+
+                var xlApp = new Excel.Application();
+
+
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Zle zainstalowany excel??");
+                    return test;
+                }
+                var xlWorkBook = xlApp.Workbooks.Add();
+
+
                 var xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Cells[1, 1] = "Nazwa Produktu";
                 xlWorkSheet.Cells[1, 2] = "Indeks Produktu";
@@ -59,48 +71,61 @@ namespace NewManagingApp.Services
                     cellCount++;
                 }
 
-                xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlWorkBook.Close(true, misValue, misValue);
-                xlApp.Quit();
+                try
+                {
+                    xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    xlWorkBook.Close(true);
+                    xlApp.Quit();
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
+                }
 
-                Marshal.ReleaseComObject(xlWorkSheet);
-                Marshal.ReleaseComObject(xlWorkBook);
-                Marshal.ReleaseComObject(xlApp);
+                test = true;
+                return test;
+            });
+            return test;
+        }
 
-                MessageBox.Show($"Plik utworzony pod scieżką: {path}");
+        public async static void SaveListToExcelAsPriceList(this ObservableCollection<Indeks> list)
+        {
+            string path = PathService.GetPath();
+
+            if (path != "")
+            {
+                bool IsSavingDone = await PriceListSavingModel(path, list);
+
+                if (IsSavingDone)
+                    MessageBox.Show($"Plik utworzony pod scieżką: {path}");
             }
             else
             {
-                MessageBox.Show("Bład przy zapisywaniu");
+                MessageBox.Show("Wybierz prawidlowa sciezke do pliku");
             }
-
-
         }
-
-        public static void SaveListToExcelAsPriceList(this ObservableCollection<Indeks> list)
+        private async static Task<bool> PriceListSavingModel(string path, ObservableCollection<Indeks> list)
         {
-            var xlApp = new Excel.Application();
-            if (xlApp == null)
+            bool test = false;
+            await Task.Run(() =>
             {
-                MessageBox.Show("Zle zainstalowany excel??");
-                return;
-            }
-            object misValue = System.Reflection.Missing.Value;
-            var xlWorkBook = xlApp.Workbooks.Add(misValue);
 
-            string path = "";
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel File|*.xls";
-            saveFileDialog.Title = "Save an Excel File";
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                path = saveFileDialog.FileName;
-            }
+                var xlApp = new Excel.Application();
 
 
-            if (path != "" && path != null)
-            {
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Zle zainstalowany excel??");
+                    return test;
+                }
+                var xlWorkBook = xlApp.Workbooks.Add();
+
 
                 var xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 xlWorkSheet.Cells[1, 1] = "Indeks";
@@ -109,6 +134,7 @@ namespace NewManagingApp.Services
                 xlWorkSheet.Cells[1, 4] = "Cena";
                 xlWorkSheet.Cells[1, 5] = "Waluta";
                 xlWorkSheet.Cells[1, 6] = "UWAGI";
+
 
                 int cellCount = 2;
 
@@ -133,21 +159,29 @@ namespace NewManagingApp.Services
                 formatRange = xlWorkSheet.get_Range("b1", "c1");
                 formatRange.ColumnWidth = 45;
 
+                try
+                {
+                    xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    xlWorkBook.Close(true);
+                    xlApp.Quit();
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
+                }
+                test = true;
+                return test;
+            });
+            return test;
 
-                xlWorkBook.SaveAs(path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlWorkBook.Close(true, misValue, misValue);
-                xlApp.Quit();
-
-                Marshal.ReleaseComObject(xlWorkSheet);
-                Marshal.ReleaseComObject(xlWorkBook);
-                Marshal.ReleaseComObject(xlApp);
-
-                MessageBox.Show($"Plik utworzony pod scieżką: {path}");
-            }
-            else
-            {
-                MessageBox.Show("Bład przy zapisywaniu");
-            }
         }
+
+       
     }
 }
